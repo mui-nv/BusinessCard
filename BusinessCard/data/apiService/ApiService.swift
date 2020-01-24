@@ -14,6 +14,8 @@ class ApiService {
     static let getUrl = "allData.php"
     static let deleteUrl = "delete.php"
     static let getImageUrl = "getImage.php"
+    static let updateUrl = "update.php"
+    
     static let createUserUrl = "CreateUser.php"
     static let selectUserUrl = "SelectUser.php"
     

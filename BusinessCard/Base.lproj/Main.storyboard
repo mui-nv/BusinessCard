@@ -122,12 +122,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="登録"/>
+                                <connections>
+                                    <action selector="actionRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uPl-kZ-mu1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="名刺入力" id="3o7-5g-IbJ"/>
+                    <connections>
+                        <outlet property="myMap" destination="SGT-J2-6ND" id="wes-rN-V4v"/>
+                        <outlet property="textAddress1" destination="G7y-Mw-4i4" id="9em-uv-YnX"/>
+                        <outlet property="textAddress2" destination="OF0-1v-GoL" id="hCh-35-sCH"/>
+                        <outlet property="textCompany" destination="r4Z-q7-HYX" id="u1b-Dd-tfD"/>
+                        <outlet property="textDepartment" destination="ulV-rJ-Qqq" id="EY4-BU-W2b"/>
+                        <outlet property="textName" destination="wAA-q3-IS2" id="oEI-LW-F90"/>
+                        <outlet property="textName2" destination="uRi-xz-PfX" id="0RN-Hh-e41"/>
+                        <outlet property="textPostal" destination="Hv1-Ax-bg2" id="hQf-ef-ZWe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

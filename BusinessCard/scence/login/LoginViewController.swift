@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         userRepository.selectUser(data: userData, selectSuccess: { userResponse in
             moveToMain()
         }, selectError: { error in
-            print(error)
+            showErrorDialog(messgae: error.description)
         })
     }
     
