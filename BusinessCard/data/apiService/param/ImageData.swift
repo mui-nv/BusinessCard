@@ -1,5 +1,5 @@
 //
-//  Param.swift
+//  ImageData.swift
 //  BusinessCard
 //
 //  Created by AxiZ on 2020/01/24.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Param: Codable {
-    var param: String = ""
+struct ImageData: Codable {
+    var image: String = ""
 }

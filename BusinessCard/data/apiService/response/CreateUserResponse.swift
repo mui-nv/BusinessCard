@@ -1,5 +1,5 @@
 //
-//  Param.swift
+//  CreateUserResponse.swift
 //  BusinessCard
 //
 //  Created by AxiZ on 2020/01/24.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-struct Param: Codable {
-    var param: String = ""
+struct CreateUserResponse: Codable {
+    var id: Int
+    var user: String?
+    var password: String?
 }

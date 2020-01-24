@@ -11,8 +11,8 @@ import RealmSwift
 
 class UserObject: Object {
     @objc var userID: Int = 100
-    @objc var user: String = ""
-    @objc var password: String = ""
+    @objc var user: String? = ""
+    @objc var password: String? = ""
     
     override static func primaryKey() -> String? {
         return "userID"

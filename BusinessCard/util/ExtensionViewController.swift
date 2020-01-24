@@ -1,5 +1,5 @@
 //
-//  Param.swift
+//  ExtensionViewController.swift
 //  BusinessCard
 //
 //  Created by AxiZ on 2020/01/24.
@@ -7,7 +7,3 @@
 //
 
 import Foundation
-
-struct Param: Codable {
-    var param: String = ""
-}
