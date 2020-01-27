@@ -15,8 +15,10 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        searchInfo()
+//        searchInfo()
 //        deleteInfo()
+//        getImage(url: "ns1")
+//        updateInfo()
     }
     
     func searchInfo() {
@@ -34,6 +36,24 @@ class SearchViewController: UIViewController {
             print(succesData)
         }, deleteError: { resultError in
             print(resultError)
+        })
+    }
+    
+    func getImage(url: String) {
+        let getImage = ImageParam(image: url)
+        infoRepo.getImage(data: getImage, searchSuccess: { image in
+            print(image)
+        }, searchError: { errorss in
+            print(errorss)
+        })
+    }
+    
+    func updateInfo() {
+        var infoParam = CreateInfoParam(id: 5, userID: 2, name1: "test1", name2: "test2", company: "campany", department: "department", postal: "1234", address1: "test1", address2: "test2", latitude: 1234.0, longitude: 123.0, image: "ns34")
+        infoRepo.updateInfo(data: infoParam, updateSuccess: { successData in
+            print(successData)
+        }, updateError: { errorData in
+            print(errorData)
         })
     }
 

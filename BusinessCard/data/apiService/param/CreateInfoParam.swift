@@ -9,6 +9,7 @@
 import Foundation
 
 struct CreateInfoParam: Codable {
+    var id: Int?
     var userID: Int
     var name1: String
     var name2: String
