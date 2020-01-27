@@ -9,13 +9,33 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    var infoRepo = InformationRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        searchInfo()
+//        deleteInfo()
     }
     
+    func searchInfo() {
+        let searchParam = SearchParam(userID: 2)
+        infoRepo.searchInfo(data: searchParam, searchSuccess: { infoList in
+            print(infoList)
+        }, searchError: { searchError in
+            print(searchError)
+        })
+    }
+    
+    func deleteInfo() {
+        let deleteParam = DeleteParam(id: 12, userID: 2)
+        infoRepo.deleteInfo(data: deleteParam, deleteSuccess: { succesData in
+            print(succesData)
+        }, deleteError: { resultError in
+            print(resultError)
+        })
+    }
 
     /*
     // MARK: - Navigation

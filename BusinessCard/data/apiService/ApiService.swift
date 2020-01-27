@@ -11,7 +11,7 @@ import Foundation
 class ApiService {
     static let baseUrl = "http://localhost/BusinessCard/"
     static let createUrl = "create.php"
-    static let getUrl = "allData.php"
+    static let searchUrl = "allData.php"
     static let deleteUrl = "delete.php"
     static let getImageUrl = "getImage.php"
     static let updateUrl = "update.php"
@@ -89,6 +89,7 @@ class ApiService {
         let decoder = JSONDecoder()
         requestAPI(object: data, method: "POST", url: url, success: { userData in
             do {
+                print(Util.dataToString(dataIn: userData))
                 let sucessData: Param = try decoder.decode(Param.self, from: userData!)
                 onSuccess(sucessData)
             } catch let errors as NSError {

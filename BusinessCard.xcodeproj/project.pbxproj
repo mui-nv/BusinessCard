@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4E637A4F23DE61AC009D0753 /* CreateInfoParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */; };
+		4E637A5123DE6A51009D0753 /* DeleteParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637A5023DE6A51009D0753 /* DeleteParam.swift */; };
+		4E637A5323DE70A4009D0753 /* SearchParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637A5223DE70A4009D0753 /* SearchParam.swift */; };
+		4E637A5523DE7B17009D0753 /* DeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637A5423DE7B17009D0753 /* DeleteResponse.swift */; };
 		4E80BD8F23DAAB7D00794F4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD8E23DAAB7D00794F4D /* AppDelegate.swift */; };
 		4E80BD9123DAAB7D00794F4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD9023DAAB7D00794F4D /* SceneDelegate.swift */; };
 		4E80BD9323DAAB7D00794F4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD9223DAAB7D00794F4D /* ViewController.swift */; };
@@ -41,6 +44,9 @@
 /* Begin PBXFileReference section */
 		0EE8C16BFC2D5A6135EFF0B1 /* Pods_BusinessCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BusinessCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfoParam.swift; sourceTree = "<group>"; };
+		4E637A5023DE6A51009D0753 /* DeleteParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteParam.swift; sourceTree = "<group>"; };
+		4E637A5223DE70A4009D0753 /* SearchParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParam.swift; sourceTree = "<group>"; };
+		4E637A5423DE7B17009D0753 /* DeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteResponse.swift; sourceTree = "<group>"; };
 		4E80BD8B23DAAB7D00794F4D /* BusinessCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E80BD8E23DAAB7D00794F4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E80BD9023DAAB7D00794F4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +183,8 @@
 				4E80BDC623DABAE100794F4D /* ImageData.swift */,
 				4E80BDC823DAC70D00794F4D /* CreateUserParam.swift */,
 				4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */,
+				4E637A5023DE6A51009D0753 /* DeleteParam.swift */,
+				4E637A5223DE70A4009D0753 /* SearchParam.swift */,
 			);
 			path = param;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				4E80BDCA23DAC82200794F4D /* CreateUserResponse.swift */,
+				4E637A5423DE7B17009D0753 /* DeleteResponse.swift */,
 			);
 			path = response;
 			sourceTree = "<group>";
@@ -412,9 +421,12 @@
 				4E80BDC123DAB71900794F4D /* SearchViewController.swift in Sources */,
 				4E80BDBB23DAB16800794F4D /* User.swift in Sources */,
 				4E80BDAA23DAADBF00794F4D /* InformationObject.swift in Sources */,
+				4E637A5123DE6A51009D0753 /* DeleteParam.swift in Sources */,
 				4E80BDAC23DAAE8C00794F4D /* AES.swift in Sources */,
 				4E80BDBF23DAB70600794F4D /* EditViewController.swift in Sources */,
 				4E80BDD123DACC0600794F4D /* BaseRepository.swift in Sources */,
+				4E637A5323DE70A4009D0753 /* SearchParam.swift in Sources */,
+				4E637A5523DE7B17009D0753 /* DeleteResponse.swift in Sources */,
 				4E80BDB723DAB0D800794F4D /* UserObject.swift in Sources */,
 				4E80BDD423DACEC000794F4D /* ExtensionViewController.swift in Sources */,
 			);

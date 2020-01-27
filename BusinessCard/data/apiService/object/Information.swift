@@ -18,7 +18,7 @@ class Information: Codable {
     var postal: String = ""
     var address1: String = ""
     var address2: String = ""
-    var latitude: String?
-    var longitude: String?
+    var latitude: Double?
+    var longitude: Double?
     var image: String?
 }

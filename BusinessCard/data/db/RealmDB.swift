@@ -24,8 +24,69 @@ class RealmDB {
                 realm.add(userObject, update: Realm.UpdatePolicy.modified)
                 
                 let objects = realm.objects(UserObject.self)
-//                print(objects)
+                //                print(objects)
             }
         }
+    }
+    
+    func saveInfo(info: Information) {
+        let realm = try! Realm()
+        
+        let infoObject: InformationObject = InformationObject()
+        infoObject.id = info.id
+        infoObject.name1 = info.name1
+        infoObject.name2 = info.name2
+        infoObject.company = info.company
+        infoObject.department = info.department
+        infoObject.postal = info.postal
+        infoObject.address1 = info.address1
+        infoObject.address2 = info.address2
+        infoObject.longitude = info.longitude!
+        infoObject.latitude = info.latitude!
+        infoObject.image = info.image!
+        
+        autoreleasepool {
+            try! realm.write {
+                realm.add(infoObject, update: Realm.UpdatePolicy.modified)
+                
+                let objects = realm.objects(InformationObject.self)
+                print(objects)
+            }
+        }
+    }
+    
+    func saveInfo(infos: [Information]) {
+        let realm = try! Realm()
+        var objects:[InformationObject] = []
+        for info in infos {
+            objects.append(dataMapObject(info: info))
+        }
+        
+        autoreleasepool {
+            try! realm.write {
+                
+                realm.add(objects, update: Realm.UpdatePolicy.modified)
+                
+                let objectss = realm.objects(InformationObject.self)
+                print(objectss)
+            }
+        }
+    }
+    
+    func dataMapObject(info: Information) -> InformationObject {
+        let infoObject: InformationObject = InformationObject()
+        infoObject.id = info.id
+        infoObject.name1 = info.name1
+        infoObject.name2 = info.name2
+        infoObject.company = info.company
+        infoObject.department = info.department
+        infoObject.postal = info.postal
+        infoObject.address1 = info.address1
+        infoObject.address2 = info.address2
+        infoObject.longitude = info.longitude!
+        infoObject.latitude = info.latitude!
+        infoObject.image = info.image == nil ? "" : info.image!
+        
+        return infoObject
     }
 }
