@@ -21,4 +21,5 @@ class Information: Codable {
     var latitude: Double?
     var longitude: Double?
     var image: String?
+    var imageValue: String?
 }

@@ -8,29 +8,83 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var searchTV: UITableView!
+    @IBOutlet weak var filterValueTF: UITextField!
+    @IBOutlet weak var filterSegment: UISegmentedControl!
+    @IBAction func searchAction(_ sender: Any) {
+        searchInfo()
+    }
+    
+    var listInfo: [Information] = []
     var infoRepo = InformationRepository()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        searchTV.delegate = self
+        searchTV.dataSource = self
+        
         // Do any additional setup after loading the view.
-//        searchInfo()
-//        deleteInfo()
-//        getImage(url: "ns1")
-//        updateInfo()
+        //        searchInfo()
+        //        deleteInfo()
+        //                getImage(url: "ns1")
+        //        updateInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        searchInfo()
     }
     
     func searchInfo() {
         let searchParam = SearchParam(userID: 2)
         infoRepo.searchInfo(data: searchParam, searchSuccess: { infoList in
-            print(infoList)
+            listInfo.removeAll()
+            
+            var info1: [Information]? = []
+            if filterValueTF.text != nil && filterValueTF.text! != "" {
+                switch filterSegment.selectedSegmentIndex {
+                case 0:
+                    info1 = infoList?.filter {
+                        $0.name1 == filterValueTF.text!
+                    }
+                case 1:
+                    info1 = infoList?.filter {
+                        $0.company == filterValueTF.text!
+                    }
+                case 2:
+                    info1 = infoList?.filter {
+                        $0.department == filterValueTF.text!
+                    }
+                case 3:
+                    info1 = infoList?.filter {
+                        $0.postal == filterValueTF.text!
+                    }
+                case 4:
+                    info1 = infoList?.filter {
+                        $0.address1 == filterValueTF.text!
+                    }
+                default:
+                    break
+                }
+            } else {
+                info1 = infoList
+            }
+            
+            for info in info1! {
+                if info.image != nil && info.image != "" {
+                    getImage(url: info.image!, onSuccess: { imgFile in
+                        info.imageValue = imgFile
+                    })
+                }
+                
+                listInfo.append(info)
+            }
+            
+            searchTV.reloadData()
         }, searchError: { searchError in
-            print(searchError)
+            showErrorDialog(messgae: searchError)
         })
     }
     
@@ -39,16 +93,16 @@ class SearchViewController: UIViewController {
         infoRepo.deleteInfo(data: deleteParam, deleteSuccess: { succesData in
             print(succesData)
         }, deleteError: { resultError in
-            print(resultError)
+            showErrorDialog(messgae: resultError)
         })
     }
     
-    func getImage(url: String) {
+    func getImage(url: String, onSuccess: (String?) -> ()) {
         let getImage = ImageParam(image: url)
         infoRepo.getImage(data: getImage, searchSuccess: { image in
-            print(image)
+            onSuccess(image?.ImageFile)
         }, searchError: { errorss in
-            print(errorss)
+            showErrorDialog(messgae: errorss)
         })
     }
     
@@ -60,15 +114,34 @@ class SearchViewController: UIViewController {
             print(errorData)
         })
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listInfo.count
     }
-    */
-
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath)
+            as! SearchTableViewCell
+        cell.setView(info: listInfo[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 118
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
