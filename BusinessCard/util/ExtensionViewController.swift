@@ -18,4 +18,13 @@ extension UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func showSuccessDialog(messgae: String) {
+        var alert = UIAlertController(title: "SUCESS", message: nil, preferredStyle: .alert)
+        alert.message = messgae
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
 }

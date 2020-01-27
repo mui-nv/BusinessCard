@@ -29,6 +29,19 @@ class RealmDB {
         }
     }
     
+    func findUser() -> UserObject? {
+        let realm = try! Realm()
+        var objects:[UserObject] = []
+        autoreleasepool {
+            let objectList = realm.objects(UserObject.self)
+            for object in objectList {
+                objects.append(object)
+            }
+        }
+        
+        return objects.count > 0 ? objects[0] : nil
+    }
+    
     func saveInfo(info: Information) {
         let realm = try! Realm()
         

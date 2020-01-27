@@ -21,6 +21,10 @@ class SearchViewController: UIViewController {
 //        updateInfo()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     func searchInfo() {
         let searchParam = SearchParam(userID: 2)
         infoRepo.searchInfo(data: searchParam, searchSuccess: { infoList in

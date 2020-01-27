@@ -17,6 +17,10 @@ class UserRepository: BaseRepository {
         apiService.createUser(url: requestUrl, data: data, createSuccess: createSuccess, createError: createError)
     }
     
+    func findUser() -> UserObject? {
+        return realmDB.findUser()
+    }
+    
     func selectUser(data: CreateUserParam, selectSuccess: (CreateUserResponse?) -> (), selectError: (String) -> ()) {
         let requestUrl = ApiService.baseUrl + ApiService.selectUserUrl
         

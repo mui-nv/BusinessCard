@@ -11,14 +11,19 @@ import Foundation
 class InformationRepository: BaseRepository {
     let apiService = ApiService()
     let realmDB = RealmDB()
+    let userRepository = UserRepository()
     
-    func createInfo(data: CreateInfoParam, createSuccess: (Information?) -> (), createError: (String) -> ()) {
+    func createInfo(data: CreateInfoParam, createSuccess: (CreateInformationResponse?) -> (), createError: (String) -> ()) {
         let requestUrl = ApiService.baseUrl + ApiService.createUrl
         
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()
         
-        let userData = try! encoder.encode(data)
+        let userID = userRepository.findUser()?.userID
+        var tmpData = data
+        tmpData.userID = userID!
+        
+        let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
         apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
@@ -26,7 +31,7 @@ class InformationRepository: BaseRepository {
             let resultData = Util.stringToData(string: stringResult)
             
             do {
-                let json:Information = try decoder.decode(Information.self, from: resultData! as Data)
+                let json:CreateInformationResponse = try decoder.decode(CreateInformationResponse.self, from: resultData! as Data)
                 createSuccess(json)
             } catch let error as NSError {
                 createError(error.description)
@@ -35,12 +40,16 @@ class InformationRepository: BaseRepository {
     }
     
     func deleteInfo(data: DeleteParam, deleteSuccess: (DeleteResponse?) -> (), deleteError: (String) -> ()) {
+        let userID = userRepository.findUser()?.userID
+        var tmpData = data
+        tmpData.userID = userID!
+        
         let requestUrl = ApiService.baseUrl + ApiService.deleteUrl
         
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()
         
-        let userData = try! encoder.encode(data)
+        let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         print(stringData)
         let dataObject = Util.stringToData(string: stringData)
@@ -58,12 +67,16 @@ class InformationRepository: BaseRepository {
     }
     
     func searchInfo(data: SearchParam, searchSuccess: ([Information]?) -> (), searchError: (String) -> ()) {
+        let userID = userRepository.findUser()?.userID
+        var tmpData = data
+        tmpData.userID = userID!
+        
         let requestUrl = ApiService.baseUrl + ApiService.searchUrl
         
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()
         
-        let userData = try! encoder.encode(data)
+        let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
         apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
@@ -103,12 +116,16 @@ class InformationRepository: BaseRepository {
     }
     
     func updateInfo(data: CreateInfoParam, updateSuccess: (DeleteResponse?) -> (), updateError: (String) -> ()) {
+        let userID = userRepository.findUser()?.userID
+        var tmpData = data
+        tmpData.userID = userID!
+        
         let requestUrl = ApiService.baseUrl + ApiService.updateUrl
         
         let decoder = JSONDecoder()
         let encoder = JSONEncoder()
         
-        let userData = try! encoder.encode(data)
+        let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
         apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
