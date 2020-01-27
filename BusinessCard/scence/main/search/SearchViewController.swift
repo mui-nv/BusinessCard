@@ -24,12 +24,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         searchTV.delegate = self
         searchTV.dataSource = self
-        
-        // Do any additional setup after loading the view.
-        //        searchInfo()
-        //        deleteInfo()
-        //                getImage(url: "ns1")
-        //        updateInfo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,30 +82,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
-    func deleteInfo() {
-        let deleteParam = DeleteParam(id: 12, userID: 2)
-        infoRepo.deleteInfo(data: deleteParam, deleteSuccess: { succesData in
-            print(succesData)
-        }, deleteError: { resultError in
-            showErrorDialog(messgae: resultError)
-        })
-    }
-    
     func getImage(url: String, onSuccess: (String?) -> ()) {
         let getImage = ImageParam(image: url)
         infoRepo.getImage(data: getImage, searchSuccess: { image in
             onSuccess(image?.ImageFile)
         }, searchError: { errorss in
             showErrorDialog(messgae: errorss)
-        })
-    }
-    
-    func updateInfo() {
-        var infoParam = CreateInfoParam(id: 5, userID: 2, name1: "test1", name2: "test2", company: "campany", department: "department", postal: "1234", address1: "test1", address2: "test2", latitude: 1234.0, longitude: 123.0, image: "ns34")
-        infoRepo.updateInfo(data: infoParam, updateSuccess: { successData in
-            print(successData)
-        }, updateError: { errorData in
-            print(errorData)
         })
     }
     
@@ -132,6 +108,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        (self.tabBarController?.viewControllers![2] as! EditViewController).didSelectedInfo = listInfo[indexPath.row]
+        self.tabBarController?.selectedIndex = 2
     }
     
     /*

@@ -210,6 +210,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="修正"/>
+                                <connections>
+                                    <action selector="actionUpdate:" destination="zhr-Sb-Fbn" eventType="touchUpInside" id="uAC-fq-k6E"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MAP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4i-63-9jJ">
                                 <rect key="frame" x="39" y="490" width="42" height="24"/>
@@ -267,12 +270,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="削除"/>
+                                <connections>
+                                    <action selector="deleteAction:" destination="zhr-Sb-Fbn" eventType="touchUpInside" id="N70-BP-eqc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="DIm-9e-Ort"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="名刺編集" id="xEf-mw-1qm"/>
+                    <connections>
+                        <outlet property="mapView" destination="VSe-8q-c4X" id="ryw-9j-fYK"/>
+                        <outlet property="textAddress1" destination="J8A-kF-ld7" id="AW4-8L-ya0"/>
+                        <outlet property="textAddress2" destination="3rn-Kk-BBf" id="YUQ-p2-aRJ"/>
+                        <outlet property="textCompany" destination="e5l-7r-yqq" id="eIy-FU-Rd1"/>
+                        <outlet property="textDepartment" destination="c9e-Uq-Yfh" id="7nW-A7-gf9"/>
+                        <outlet property="textName1" destination="D6m-uS-C5U" id="aeJ-Qs-Jf9"/>
+                        <outlet property="textName2" destination="U0V-Fg-WNx" id="zKz-JX-aDS"/>
+                        <outlet property="textPostal" destination="T6z-8C-M2P" id="HzG-N8-4Bs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gGo-Rs-SyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

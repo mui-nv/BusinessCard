@@ -28,6 +28,9 @@ class InputViewController: UIViewController {
     
     let disposeBag: DisposeBag = DisposeBag()
     
+    var address1Value: String?
+    var address2Value: String?
+    
     @IBAction func actionRegister(_ sender: Any) {
         registerInformation()
     }
@@ -36,6 +39,19 @@ class InputViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        textAddress1.rx.controlEvent([UIControl.Event.editingDidBegin])
+        .asDriver()
+            .drive(onNext: { value in
+                self.address1Value = self.textAddress1.text
+            })
+        .disposed(by: disposeBag)
+        textAddress2.rx.controlEvent([UIControl.Event.editingDidBegin])
+        .asDriver()
+            .drive(onNext: { value in
+                self.address2Value = self.textAddress2.text
+            })
+        .disposed(by: disposeBag)
+        
         textAddress1.rx.controlEvent([UIControl.Event.editingDidEnd])
         .asDriver()
             .drive(onNext: {
@@ -56,7 +72,11 @@ class InputViewController: UIViewController {
             return
         }
         
-        previewMap(addressForLocation: address1 + address2)
+        if address1 != address1Value || address2 != address2Value {
+            address1Value = address1
+            address2Value = address2
+            previewMap(addressForLocation: address1 + address2)
+        }
     }
     
     func registerInformation() {
