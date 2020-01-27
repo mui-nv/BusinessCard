@@ -84,4 +84,16 @@ class ApiService {
             }
         }, error: selectError)
     }
+    
+    func requestApiData(url: String, data: Data, onSuccess: (Param?) -> (), onError: (String) -> ()) {
+        let decoder = JSONDecoder()
+        requestAPI(object: data, method: "POST", url: url, success: { userData in
+            do {
+                let sucessData: Param = try decoder.decode(Param.self, from: userData!)
+                onSuccess(sucessData)
+            } catch let errors as NSError {
+                onError(errors.description)
+            }
+        }, error: onError)
+    }
 }

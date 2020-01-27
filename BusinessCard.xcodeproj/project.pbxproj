@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E637A4F23DE61AC009D0753 /* CreateInfoParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */; };
 		4E80BD8F23DAAB7D00794F4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD8E23DAAB7D00794F4D /* AppDelegate.swift */; };
 		4E80BD9123DAAB7D00794F4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD9023DAAB7D00794F4D /* SceneDelegate.swift */; };
 		4E80BD9323DAAB7D00794F4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BD9223DAAB7D00794F4D /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		0EE8C16BFC2D5A6135EFF0B1 /* Pods_BusinessCard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BusinessCard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateInfoParam.swift; sourceTree = "<group>"; };
 		4E80BD8B23DAAB7D00794F4D /* BusinessCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusinessCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E80BD8E23DAAB7D00794F4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E80BD9023DAAB7D00794F4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				4E80BDBC23DAB55D00794F4D /* Param.swift */,
 				4E80BDC623DABAE100794F4D /* ImageData.swift */,
 				4E80BDC823DAC70D00794F4D /* CreateUserParam.swift */,
+				4E637A4E23DE61AC009D0753 /* CreateInfoParam.swift */,
 			);
 			path = param;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				4E80BDC923DAC70D00794F4D /* CreateUserParam.swift in Sources */,
 				4E80BDCB23DAC82200794F4D /* CreateUserResponse.swift in Sources */,
 				4E80BDDA23DADD0B00794F4D /* RealmDB.swift in Sources */,
+				4E637A4F23DE61AC009D0753 /* CreateInfoParam.swift in Sources */,
 				4E80BDB923DAB12500794F4D /* Information.swift in Sources */,
 				4E80BDAE23DAAEAA00794F4D /* ApiService.swift in Sources */,
 				4E80BDC523DABA4200794F4D /* HttpClientImpl.swift in Sources */,

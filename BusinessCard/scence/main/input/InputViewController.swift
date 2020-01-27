@@ -19,6 +19,8 @@ class InputViewController: UIViewController {
     @IBOutlet weak var textAddress1: UITextField!
     @IBOutlet weak var textAddress2: UITextField!
     
+    let informationRepo = InformationRepository()
+    
     @IBAction func actionRegister(_ sender: Any) {
         
     }
@@ -27,6 +29,7 @@ class InputViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+//        testApi()
     }
     
     func registerInformation() {
@@ -51,10 +54,10 @@ class InputViewController: UIViewController {
             for placeMark in placeMarks! {
                 // 緯度
                 let lat = placeMark.location?.coordinate.latitude
-                print("lat:" + lat!.description)
+//                print("lat:" + lat!.description)
                 // 経度
                 let long = placeMark.location?.coordinate.longitude
-                print("long:" + long!.description)
+//                print("long:" + long!.description)
                 
                 center = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
 
@@ -78,6 +81,15 @@ class InputViewController: UIViewController {
         annotation.subtitle = "私、待ってます"
         // アノテーションを表示する
         myMap.addAnnotation(annotation)
+    }
+    
+    func testApi() {
+        var infoParam = CreateInfoParam(userID: 2, name1: "test1", name2: "test2", company: "campany", department: "department", postal: "1234", address1: "test1", address2: "test2", latitude: 1234.0, longitude: 123.0, image: "ns34")
+        informationRepo.createInfo(data: infoParam, createSuccess: { infoData in
+            print(infoData)
+        }, createError: { resultError in
+            print(resultError)
+        })
     }
 
     /*
