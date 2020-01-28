@@ -90,7 +90,7 @@ class InputViewController: UIViewController {
             return
         }
         
-        var infoParam = CreateInfoParam(userID: 0, name1: name1, name2: name2, company: company, department: department, postal: postal, address1: address1, address2: address2, latitude: latitudeValue!, longitude: longitudeValue!, image: "ns34")
+        let infoParam = CreateInfoParam(userID: 0, name1: name1, name2: name2, company: company, department: department, postal: postal, address1: address1, address2: address2, latitude: latitudeValue!, longitude: longitudeValue!, image: "ns34")
         
         createInformation(infomation: infoParam)
     }

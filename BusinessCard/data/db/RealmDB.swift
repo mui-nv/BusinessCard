@@ -23,7 +23,7 @@ class RealmDB {
             try! realm.write {
                 realm.add(userObject, update: Realm.UpdatePolicy.modified)
                 
-                let objects = realm.objects(UserObject.self)
+                _ = realm.objects(UserObject.self)
                 //                print(objects)
             }
         }
@@ -62,7 +62,7 @@ class RealmDB {
             try! realm.write {
                 realm.add(infoObject, update: Realm.UpdatePolicy.modified)
                 
-                let objects = realm.objects(InformationObject.self)
+                _ = realm.objects(InformationObject.self)
 //                print(objects)
             }
         }
@@ -80,7 +80,7 @@ class RealmDB {
                 
                 realm.add(objects, update: Realm.UpdatePolicy.modified)
                 
-                let objectss = realm.objects(InformationObject.self)
+                _ = realm.objects(InformationObject.self)
 //                print(objectss)
             }
         }

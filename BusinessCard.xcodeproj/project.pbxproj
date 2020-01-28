@@ -42,6 +42,7 @@
 		4E80BDD623DACFA400794F4D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BDD523DACFA400794F4D /* LoginViewController.swift */; };
 		4E80BDD823DAD31000794F4D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BDD723DAD31000794F4D /* Util.swift */; };
 		4E80BDDA23DADD0B00794F4D /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BDD923DADD0B00794F4D /* RealmDB.swift */; };
+		4E818A0223DFE3EF00CE5D70 /* ns48.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E818A0123DFE3EF00CE5D70 /* ns48.png */; };
 		BE19F6F46F6B2C58023A2005 /* Pods_BusinessCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE8C16BFC2D5A6135EFF0B1 /* Pods_BusinessCard.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		4E80BDD523DACFA400794F4D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4E80BDD723DAD31000794F4D /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4E80BDD923DADD0B00794F4D /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
+		4E818A0123DFE3EF00CE5D70 /* ns48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ns48.png; path = ../../../../Texture_kitagawa/ns48.png; sourceTree = "<group>"; };
 		74BEF0A4FD9216FB61E93EB9 /* Pods-BusinessCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessCard.release.xcconfig"; path = "Target Support Files/Pods-BusinessCard/Pods-BusinessCard.release.xcconfig"; sourceTree = "<group>"; };
 		AB2FF50B1BD393F015351D0E /* Pods-BusinessCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessCard.debug.xcconfig"; path = "Target Support Files/Pods-BusinessCard/Pods-BusinessCard.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +158,7 @@
 				4E80BD9723DAAB8000794F4D /* Assets.xcassets */,
 				4E80BD9923DAAB8000794F4D /* LaunchScreen.storyboard */,
 				4E80BD9C23DAAB8100794F4D /* Info.plist */,
+				4E818A0123DFE3EF00CE5D70 /* ns48.png */,
 			);
 			path = BusinessCard;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E818A0223DFE3EF00CE5D70 /* ns48.png in Resources */,
 				4E80BD9B23DAAB8000794F4D /* LaunchScreen.storyboard in Resources */,
 				4E80BD9823DAAB8000794F4D /* Assets.xcassets in Resources */,
 				4E80BD9623DAAB7D00794F4D /* Main.storyboard in Resources */,

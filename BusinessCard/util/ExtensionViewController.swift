@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
     func showErrorDialog(messgae: String) {
-        var alert = UIAlertController(title: "ERROR", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "ERROR", message: nil, preferredStyle: .alert)
         alert.message = messgae
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -20,7 +20,7 @@ extension UIViewController {
     }
     
     func showSuccessDialog(messgae: String) {
-        var alert = UIAlertController(title: "SUCESS", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "SUCESS", message: nil, preferredStyle: .alert)
         alert.message = messgae
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

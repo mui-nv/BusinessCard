@@ -125,8 +125,6 @@ class EditViewController: UIViewController, MKMapViewDelegate {
         let longValue = listAnnotation.first?.coordinate.longitude
         
         print(listAnnotation.count)
-        print(latValue)
-        print(longValue)
         
         let infoParam = CreateInfoParam(id: didSelectedInfo?.id, userID: 0, name1: textName1.text!, name2: textName2.text!, company: textCompany.text!, department: textDepartment.text!, postal: textPostal.text!, address1: textAddress1.text!, address2: textAddress2.text!, latitude: latValue!, longitude: longValue!, image: "ns34")
         infoRepo.updateInfo(data: infoParam, updateSuccess: { successData in
