@@ -43,6 +43,7 @@
 		4E80BDD823DAD31000794F4D /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BDD723DAD31000794F4D /* Util.swift */; };
 		4E80BDDA23DADD0B00794F4D /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80BDD923DADD0B00794F4D /* RealmDB.swift */; };
 		4E818A0223DFE3EF00CE5D70 /* ns48.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E818A0123DFE3EF00CE5D70 /* ns48.png */; };
+		4E818A0523E015D300CE5D70 /* BaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E818A0423E015D300CE5D70 /* BaseError.swift */; };
 		BE19F6F46F6B2C58023A2005 /* Pods_BusinessCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EE8C16BFC2D5A6135EFF0B1 /* Pods_BusinessCard.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		4E80BDD723DAD31000794F4D /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4E80BDD923DADD0B00794F4D /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		4E818A0123DFE3EF00CE5D70 /* ns48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ns48.png; path = ../../../../Texture_kitagawa/ns48.png; sourceTree = "<group>"; };
+		4E818A0423E015D300CE5D70 /* BaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseError.swift; sourceTree = "<group>"; };
 		74BEF0A4FD9216FB61E93EB9 /* Pods-BusinessCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessCard.release.xcconfig"; path = "Target Support Files/Pods-BusinessCard/Pods-BusinessCard.release.xcconfig"; sourceTree = "<group>"; };
 		AB2FF50B1BD393F015351D0E /* Pods-BusinessCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusinessCard.debug.xcconfig"; path = "Target Support Files/Pods-BusinessCard/Pods-BusinessCard.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 		4E80BDA423DAAC3B00794F4D /* apiService */ = {
 			isa = PBXGroup;
 			children = (
+				4E818A0323E015B100CE5D70 /* error */,
 				4E80BDAF23DAAF0200794F4D /* object */,
 				4E80BDA623DAAC4E00794F4D /* response */,
 				4E80BDA523DAAC4300794F4D /* param */,
@@ -307,6 +310,14 @@
 				4E80BDD723DAD31000794F4D /* Util.swift */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		4E818A0323E015B100CE5D70 /* error */ = {
+			isa = PBXGroup;
+			children = (
+				4E818A0423E015D300CE5D70 /* BaseError.swift */,
+			);
+			path = error;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -444,6 +455,7 @@
 				4E80BDCF23DACAF500794F4D /* InformationRepository.swift in Sources */,
 				4E80BD9123DAAB7D00794F4D /* SceneDelegate.swift in Sources */,
 				4E80BDC723DABAE100794F4D /* ImageData.swift in Sources */,
+				4E818A0523E015D300CE5D70 /* BaseError.swift in Sources */,
 				4E80BDD823DAD31000794F4D /* Util.swift in Sources */,
 				4E80BDC123DAB71900794F4D /* SearchViewController.swift in Sources */,
 				4E80BDBB23DAB16800794F4D /* User.swift in Sources */,

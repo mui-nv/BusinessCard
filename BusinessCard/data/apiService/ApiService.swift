@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class ApiService {
     static let baseUrl = "http://localhost/BusinessCard/"
@@ -19,27 +20,31 @@ class ApiService {
     static let createUserUrl = "CreateUser.php"
     static let selectUserUrl = "SelectUser.php"
     
-    func requestAPI(object: Data?, method: String, url: String, success: (Data?) -> (), error: (String) -> ()) {
-        let myUrl: URL = URL(string: url)!
-        let req = NSMutableURLRequest(url: myUrl)
-        
-        req.httpMethod = method
-        if object != nil {
-            req.httpBody = object
-        }
-        
-        let myHttpSession = HttpClientImpl()
-        
-        let (data, response, _) = myHttpSession.execute(request: req as URLRequest)
-        
-        let code = (response as! HTTPURLResponse).statusCode
-        if code != 200 {
-            error("something wrong with server: \(code)")
-            return
-        }
-        
-        if data != nil {
-            success(data! as Data)
+    func requestAPI(object: Data?, method: String, url: String) -> Observable<Data> {
+        return Observable.create { observer in
+            
+            let myUrl: URL = URL(string: url)!
+            let req = NSMutableURLRequest(url: myUrl)
+            
+            req.httpMethod = method
+            if object != nil {
+                req.httpBody = object
+            }
+            
+            let myHttpSession = HttpClientImpl()
+            
+            let (data, response, _) = myHttpSession.execute(request: req as URLRequest)
+            
+            let code = (response as! HTTPURLResponse).statusCode
+            if code != 200 {
+                observer.onError(BaseError.unexpectedError)
+            }
+            
+            if data != nil {
+                observer.onNext(data! as Data)
+            }
+            
+            return Disposables.create()
         }
     }
     
