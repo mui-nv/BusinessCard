@@ -7,21 +7,22 @@
 //
 
 import Foundation
+import RxSwift
 
 class UserRepository: BaseRepository {
     let apiService = ApiService()
     let realmDB = RealmDB()
     
-    func createUser(data: CreateUserParam, createSuccess: (CreateUserResponse?) -> (), createError: (String) -> ()) {
+    func createUser(data: CreateUserParam) -> Observable<CreateUserResponse> {
         let requestUrl = ApiService.baseUrl + ApiService.createUserUrl
-        apiService.createUser(url: requestUrl, data: data, createSuccess: createSuccess, createError: createError)
+        return apiService.createUser(url: requestUrl, data: data)
     }
     
     func findUser() -> UserObject? {
         return realmDB.findUser()
     }
     
-    func selectUser(data: CreateUserParam, selectSuccess: (CreateUserResponse?) -> (), selectError: (String) -> ()) {
+    func selectUser(data: CreateUserParam) -> Observable<CreateUserResponse> {
         let requestUrl = ApiService.baseUrl + ApiService.selectUserUrl
         
         let decoder = JSONDecoder()
@@ -30,17 +31,19 @@ class UserRepository: BaseRepository {
         let userData = try! encoder.encode(data)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
-        apiService.selectUser(url: requestUrl, data: dataObject!, selectSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:CreateUserResponse = try decoder.decode(CreateUserResponse.self, from: resultData! as Data)
-                realmDB.saveUser(user: json)
-                selectSuccess(json)
-            } catch let error as NSError {
-                selectError(error.description)
-            }
-        }, selectError: selectError)
+        
+        return apiService.selectUser(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<CreateUserResponse> in
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:CreateUserResponse = try decoder.decode(CreateUserResponse.self, from: resultData! as Data)
+                    self.realmDB.saveUser(user: json)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
 }

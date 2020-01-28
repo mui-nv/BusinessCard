@@ -48,23 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
-            landmarkName = "searchInfo(data:searchSuccess:searchError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2843BEB4-B9B3-48B7-884F-5A7B5C41331E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/Repository/InformationRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "searchInfo(data:searchSuccess:searchError:)"
+            landmarkName = "searchInfo(data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,183 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
             endingLineNumber = "93"
-            landmarkName = "requestApiData(url:data:onSuccess:onError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08710A1D-345A-4B09-825E-B4159ACED659"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/data/apiService/ApiService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "requestApiData(url:data:onSuccess:onError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A251256E-07E3-4687-AFC0-EC481E48AF0C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/data/apiService/ApiService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "requestApiData(url:data:onSuccess:onError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "04CD779F-BF54-4236-BE64-E604D6D3B308"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/data/apiService/ApiService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "requestApiData(url:data:onSuccess:onError:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "11B0327B-32B9-41E0-B49D-B5C9EEC8A682"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/scence/main/search/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "searchInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7FB82ED9-E33D-4559-8EBE-2F0AAF958F4F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/scence/main/search/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "searchInfo()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7FB82ED9-E33D-4559-8EBE-2F0AAF958F4F - 60171e830643ada8"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BusinessCard.SearchViewController.searchInfo() -&gt; ()"
-                  moduleName = "BusinessCard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/axiz/Desktop/ios/training/BusinessCard/BusinessCard/scence/main/search/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "46">
-               </Location>
-               <Location
-                  uuid = "7FB82ED9-E33D-4559-8EBE-2F0AAF958F4F - 10f9bebae2a1772c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;BusinessCard.Information&gt;&gt;) -&gt; () in BusinessCard.SearchViewController.searchInfo() -&gt; ()"
-                  moduleName = "BusinessCard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/axiz/Desktop/ios/training/BusinessCard/BusinessCard/scence/main/search/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "74">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "409471B3-F425-4242-8E0A-99F0C82F4C18"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/scence/main/search/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "searchInfo()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "409471B3-F425-4242-8E0A-99F0C82F4C18 - 10f9bebae2a1772c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;BusinessCard.Information&gt;&gt;) -&gt; () in BusinessCard.SearchViewController.searchInfo() -&gt; ()"
-                  moduleName = "BusinessCard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/axiz/Desktop/ios/training/BusinessCard/BusinessCard/scence/main/search/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "1842">
-               </Location>
-               <Location
-                  uuid = "409471B3-F425-4242-8E0A-99F0C82F4C18 - 71c5e682c79ddd51"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (BusinessCard.Information) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;Swift.Array&lt;BusinessCard.Information&gt;&gt;) -&gt; () in BusinessCard.SearchViewController.searchInfo() -&gt; ()"
-                  moduleName = "BusinessCard"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/axiz/Desktop/ios/training/BusinessCard/BusinessCard/scence/main/search/SearchViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "87">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EE29A4DE-E2DF-4D3E-928A-ED549FFACB6E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BusinessCard/scence/main/search/SearchViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "searchInfo()"
+            landmarkName = "requestApiData(url:data:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -270,8 +78,8 @@
             filePath = "BusinessCard/scence/main/edit/EditViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "previewMap()"
             landmarkType = "7">
          </BreakpointContent>

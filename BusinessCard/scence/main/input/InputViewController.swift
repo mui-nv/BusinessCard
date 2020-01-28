@@ -147,11 +147,14 @@ class InputViewController: UIViewController {
     }
     
     func createInformation(infomation: CreateInfoParam) {
-        informationRepo.createInfo(data: infomation, createSuccess: { infoData in
-            showErrorDialog(messgae: "Create Infomation Successed!")
-        }, createError: { resultError in
-            showErrorDialog(messgae: resultError)
-        })
+        informationRepo.createInfo(data: infomation)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                self.showErrorDialog(messgae: "Create Infomation Successed!")
+            }, onError: { _ in
+                self.showErrorDialog(messgae: "error em oi")
+            })
+        .disposed(by: disposeBag)
     }
     
     /*

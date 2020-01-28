@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import RxSwift
 
 class InformationRepository: BaseRepository {
     let apiService = ApiService()
     let realmDB = RealmDB()
     let userRepository = UserRepository()
     
-    func createInfo(data: CreateInfoParam, createSuccess: (CreateInformationResponse?) -> (), createError: (String) -> ()) {
+    func createInfo(data: CreateInfoParam) -> Observable<CreateInformationResponse> {
         let requestUrl = ApiService.baseUrl + ApiService.createUrl
         
         let decoder = JSONDecoder()
@@ -26,20 +27,21 @@ class InformationRepository: BaseRepository {
         let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
-        apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:CreateInformationResponse = try decoder.decode(CreateInformationResponse.self, from: resultData! as Data)
-                createSuccess(json)
-            } catch let error as NSError {
-                createError(error.description)
-            }
-        }, onError: createError)
+        return apiService.requestApiData(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<CreateInformationResponse> in
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:CreateInformationResponse = try decoder.decode(CreateInformationResponse.self, from: resultData! as Data)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func deleteInfo(data: DeleteParam, deleteSuccess: (DeleteResponse?) -> (), deleteError: (String) -> ()) {
+    func deleteInfo(data: DeleteParam) -> Observable<DeleteResponse> {
         let userID = userRepository.findUser()?.userID
         var tmpData = data
         tmpData.userID = userID!
@@ -53,20 +55,22 @@ class InformationRepository: BaseRepository {
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         print(stringData)
         let dataObject = Util.stringToData(string: stringData)
-        apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:DeleteResponse = try decoder.decode(DeleteResponse.self, from: resultData! as Data)
-                deleteSuccess(json)
-            } catch let error as NSError {
-                deleteError(error.description)
-            }
-        }, onError: deleteError)
+        
+        return apiService.requestApiData(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<DeleteResponse> in
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:DeleteResponse = try decoder.decode(DeleteResponse.self, from: resultData! as Data)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func searchInfo(data: SearchParam, searchSuccess: ([Information]?) -> (), searchError: (String) -> ()) {
+    func searchInfo(data: SearchParam) -> Observable<[Information]> {
         let userID = userRepository.findUser()?.userID
         var tmpData = data
         tmpData.userID = userID!
@@ -79,21 +83,22 @@ class InformationRepository: BaseRepository {
         let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
-        apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:[Information] = try decoder.decode([Information].self, from: resultData! as Data)
-                searchSuccess(json)
-                realmDB.saveInfo(infos: json)
-            } catch let error as NSError {
-                searchError(error.description)
-            }
-        }, onError: searchError)
+        return apiService.requestApiData(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<[Information]> in
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:[Information] = try decoder.decode([Information].self, from: resultData! as Data)
+                    self.realmDB.saveInfo(infos: json)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func getImage(data: ImageParam, searchSuccess: (ImageResponse?) -> (), searchError: (String) -> ()) {
+    func getImage(data: ImageParam) -> Observable<ImageResponse> {
         let requestUrl = ApiService.baseUrl + ApiService.getImageUrl
         
         let decoder = JSONDecoder()
@@ -102,20 +107,23 @@ class InformationRepository: BaseRepository {
         let userData = try! encoder.encode(data)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
-        apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:ImageResponse = try decoder.decode(ImageResponse.self, from: resultData! as Data)
-                searchSuccess(json)
-            } catch let error as NSError {
-                searchError(error.description)
-            }
-        }, onError: searchError)
+        
+        return apiService.requestApiData(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<ImageResponse> in
+                
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:ImageResponse = try decoder.decode(ImageResponse.self, from: resultData! as Data)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func updateInfo(data: CreateInfoParam, updateSuccess: (DeleteResponse?) -> (), updateError: (String) -> ()) {
+    func updateInfo(data: CreateInfoParam) -> Observable<DeleteResponse> {
         let userID = userRepository.findUser()?.userID
         var tmpData = data
         tmpData.userID = userID!
@@ -128,16 +136,19 @@ class InformationRepository: BaseRepository {
         let userData = try! encoder.encode(tmpData)
         let stringData = "{\"param\":\"" + encodeString(data: Util.dataToString(dataIn: userData)) + "\"}"
         let dataObject = Util.stringToData(string: stringData)
-        apiService.requestApiData(url: requestUrl, data: dataObject!, onSuccess: { paramData in
-            let stringResult = decodeString(data: paramData!.param)
-            let resultData = Util.stringToData(string: stringResult)
-            
-            do {
-                let json:DeleteResponse = try decoder.decode(DeleteResponse.self, from: resultData! as Data)
-                updateSuccess(json)
-            } catch let error as NSError {
-                updateError(error.description)
-            }
-        }, onError: updateError)
+        
+        return apiService.requestApiData(url: requestUrl, data: dataObject!)
+            .flatMap { (paramData) -> Observable<DeleteResponse> in
+                
+                let stringResult = self.decodeString(data: paramData.param)
+                let resultData = Util.stringToData(string: stringResult)
+                
+                do {
+                    let json:DeleteResponse = try decoder.decode(DeleteResponse.self, from: resultData! as Data)
+                    return .just(json)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
 }

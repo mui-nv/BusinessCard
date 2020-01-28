@@ -39,37 +39,37 @@ class EditViewController: UIViewController, MKMapViewDelegate {
     var address1Value: String?
     var address2Value: String?
     var listAnnotation:[MKAnnotation] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         textAddress1.rx.controlEvent([UIControl.Event.editingDidBegin])
-        .asDriver()
+            .asDriver()
             .drive(onNext: { value in
                 self.address1Value = self.textAddress1.text
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         textAddress2.rx.controlEvent([UIControl.Event.editingDidBegin])
-        .asDriver()
+            .asDriver()
             .drive(onNext: { value in
                 self.address2Value = self.textAddress2.text
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         textAddress1.rx.controlEvent([UIControl.Event.editingDidEnd])
-        .asDriver()
+            .asDriver()
             .drive(onNext: { value in
                 self.checkMapPreview()
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         textAddress2.rx.controlEvent([UIControl.Event.editingDidEnd])
-        .asDriver()
+            .asDriver()
             .drive(onNext: {
                 self.checkMapPreview()
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         mapView.delegate = self
     }
@@ -86,11 +86,14 @@ class EditViewController: UIViewController, MKMapViewDelegate {
         }
         
         let deleteParam = DeleteParam(id: (didSelectedInfo?.id)!, userID: 0)
-        infoRepo.deleteInfo(data: deleteParam, deleteSuccess: { succesData in
-            showSuccessDialog(messgae: "Delete User Succeed!")
-        }, deleteError: { resultError in
-            showErrorDialog(messgae: resultError)
-        })
+        infoRepo.deleteInfo(data: deleteParam)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { value in
+                self.showSuccessDialog(messgae: "Delete User Succeed!")
+            }, onError: { _ in
+                self.showErrorDialog(messgae: "an error has occured!")
+            })
+            .disposed(by: disposeBag)
     }
     
     func checkMapPreview() {
@@ -127,12 +130,14 @@ class EditViewController: UIViewController, MKMapViewDelegate {
         print(listAnnotation.count)
         
         let infoParam = CreateInfoParam(id: didSelectedInfo?.id, userID: 0, name1: textName1.text!, name2: textName2.text!, company: textCompany.text!, department: textDepartment.text!, postal: textPostal.text!, address1: textAddress1.text!, address2: textAddress2.text!, latitude: latValue!, longitude: longValue!, image: "ns34")
-        infoRepo.updateInfo(data: infoParam, updateSuccess: { successData in
-            resetSelectedInfo()
-            showSuccessDialog(messgae: "update User Succeed!")
-        }, updateError: { errorData in
-            showErrorDialog(messgae: "Update User Fail!")
-        })
+        infoRepo.updateInfo(data: infoParam).observeOn(MainScheduler.instance)
+            .subscribe(onNext: { value in
+                self.resetSelectedInfo()
+                self.showSuccessDialog(messgae: "Update User Succeed!")
+            }, onError: { _ in
+                self.showErrorDialog(messgae: "An error has occured!")
+            })
+            .disposed(by: disposeBag)
     }
     
     func resetSelectedInfo() {
@@ -157,7 +162,7 @@ class EditViewController: UIViewController, MKMapViewDelegate {
         textAddress1.text = info!.address1
         textAddress2.text = info!.address2
         textPostal.text = info!.postal
-
+        
         didSelectedInfo = info
         
         latitudeValue = info!.latitude
@@ -255,13 +260,13 @@ class EditViewController: UIViewController, MKMapViewDelegate {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

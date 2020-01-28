@@ -35,8 +35,7 @@ class ApiService {
             
             let (data, response, _) = myHttpSession.execute(request: req as URLRequest)
             
-            let code = (response as! HTTPURLResponse).statusCode
-            if code != 200 {
+            if response == nil || (response as! HTTPURLResponse).statusCode != 200 {
                 observer.onError(BaseError.unexpectedError)
             }
             
@@ -48,58 +47,48 @@ class ApiService {
         }
     }
     
-    func getImageApi(url: String, data: ImageData, getSuccess: (ImageData?) -> (), getError: (String) -> ()) {
+    func createUser(url: String, data: CreateUserParam) -> Observable<CreateUserResponse> {
         let encoder = JSONEncoder()
         let decoder = JSONDecoder()
         let dataObj = try! encoder.encode(data)
-        requestAPI(object: dataObj, method: "POST", url: url, success: { encodePlayer in
-            
-            do {
-                let sucessData: Param = try decoder.decode(Param.self, from: encodePlayer!)
-                print(sucessData)
-            } catch let errors as NSError {
-                getError(errors.description)
-            }
-        }, error: getError)
+        return requestAPI(object: dataObj, method: "POST", url: url)
+            .flatMap { (paramData) -> Observable<CreateUserResponse> in
+                
+                do {
+                    let sucessData: CreateUserResponse = try decoder.decode(CreateUserResponse.self, from: paramData)
+                    return .just(sucessData)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func createUser(url: String, data: CreateUserParam, createSuccess: (CreateUserResponse?) -> (), createError: (String) -> ()) {
-        let encoder = JSONEncoder()
+    func selectUser(url: String, data: Data) -> Observable<Param> {
         let decoder = JSONDecoder()
-        let dataObj = try! encoder.encode(data)
-        requestAPI(object: dataObj, method: "POST", url: url, success: { userData in
-            
-            do {
-                let sucessData: CreateUserResponse = try decoder.decode(CreateUserResponse.self, from: userData!)
-                print(sucessData)
-            } catch let errors as NSError {
-                createError(errors.description)
-            }
-        }, error: createError)
+        
+        return requestAPI(object: data, method: "POST", url: url)
+            .flatMap { (paramData) -> Observable<Param> in
+                
+                do {
+                    let sucessData: Param = try decoder.decode(Param.self, from: paramData)
+                    return .just(sucessData)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
     
-    func selectUser(url: String, data: Data, selectSuccess: (Param?) -> (), selectError: (String) -> ()) {
+    func requestApiData(url: String, data: Data) -> Observable<Param> {
         let decoder = JSONDecoder()
-        requestAPI(object: data, method: "POST", url: url, success: { userData in
-            do {
-                let sucessData: Param = try decoder.decode(Param.self, from: userData!)
-                selectSuccess(sucessData)
-            } catch let errors as NSError {
-                selectError(errors.description)
-            }
-        }, error: selectError)
-    }
-    
-    func requestApiData(url: String, data: Data, onSuccess: (Param?) -> (), onError: (String) -> ()) {
-        let decoder = JSONDecoder()
-        requestAPI(object: data, method: "POST", url: url, success: { userData in
-            do {
-                print(Util.dataToString(dataIn: userData))
-                let sucessData: Param = try decoder.decode(Param.self, from: userData!)
-                onSuccess(sucessData)
-            } catch let errors as NSError {
-                onError(errors.description)
-            }
-        }, error: onError)
+        return requestAPI(object: data, method: "POST", url: url)
+            .flatMap { (responseData) -> Observable<Param> in
+                
+                do {
+                    let sucessData: Param = try decoder.decode(Param.self, from: responseData)
+                    return .just(sucessData)
+                } catch _ as NSError {
+                    return .error(BaseError.unexpectedError)
+                }
+        }
     }
 }

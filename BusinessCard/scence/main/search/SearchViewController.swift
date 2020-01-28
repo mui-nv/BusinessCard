@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var searchTV: UITableView!
@@ -18,6 +19,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var listInfo: [Information] = []
     var infoRepo = InformationRepository()
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,62 +35,75 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func searchInfo() {
         let searchParam = SearchParam(userID: 2)
-        infoRepo.searchInfo(data: searchParam, searchSuccess: { infoList in
-            listInfo.removeAll()
-            
-            var info1: [Information]? = []
-            if filterValueTF.text != nil && filterValueTF.text! != "" {
-                switch filterSegment.selectedSegmentIndex {
-                case 0:
-                    info1 = infoList?.filter {
-                        $0.name1 == filterValueTF.text!
+        infoRepo.searchInfo(data: searchParam)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { infoList in
+                self.listInfo.removeAll()
+                
+                var info1: [Information]? = []
+                if self.filterValueTF.text != nil && self.filterValueTF.text! != "" {
+                    switch self.filterSegment.selectedSegmentIndex {
+                    case 0:
+                        info1 = infoList.filter {
+                            $0.name1 == self.filterValueTF.text!
+                        }
+                    case 1:
+                        info1 = infoList.filter {
+                            $0.company == self.filterValueTF.text!
+                        }
+                    case 2:
+                        info1 = infoList.filter {
+                            $0.department == self.filterValueTF.text!
+                        }
+                    case 3:
+                        info1 = infoList.filter {
+                            $0.postal == self.filterValueTF.text!
+                        }
+                    case 4:
+                        info1 = infoList.filter {
+                            $0.address1 == self.filterValueTF.text!
+                        }
+                    default:
+                        break
                     }
-                case 1:
-                    info1 = infoList?.filter {
-                        $0.company == filterValueTF.text!
-                    }
-                case 2:
-                    info1 = infoList?.filter {
-                        $0.department == filterValueTF.text!
-                    }
-                case 3:
-                    info1 = infoList?.filter {
-                        $0.postal == filterValueTF.text!
-                    }
-                case 4:
-                    info1 = infoList?.filter {
-                        $0.address1 == filterValueTF.text!
-                    }
-                default:
-                    break
-                }
-            } else {
-                info1 = infoList
-            }
-            
-            for info in info1! {
-                if info.image != nil && info.image != "" {
-                    getImage(url: info.image!, onSuccess: { imgFile in
-                        info.imageValue = imgFile
-                    })
+                } else {
+                    info1 = infoList
                 }
                 
-                listInfo.append(info)
-            }
-            
-            searchTV.reloadData()
-        }, searchError: { searchError in
-            showErrorDialog(messgae: searchError)
-        })
+                for info in info1! {
+//                    if info.image != nil && info.image != "" {
+//                        self.getImage(url: info.image!, Success: { imgFile in
+//                            info.imageValue = imgFile
+//                        })
+//                    }
+                    
+                    self.listInfo.append(info)
+                }
+                
+                self.getImage()
+                self.searchTV.reloadData()
+            }, onError: { _ in
+                self.showErrorDialog(messgae: "An Error has Occured!")
+            })
+            .disposed(by: disposeBag)
     }
     
-    func getImage(url: String, onSuccess: (String?) -> ()) {
-        let getImage = ImageParam(image: url)
-        infoRepo.getImage(data: getImage, searchSuccess: { image in
-            onSuccess(image?.ImageFile)
-        }, searchError: { errorss in
-            showErrorDialog(messgae: errorss)
-        })
+    func getImage() {
+        for info in listInfo {
+            guard info.image != nil && info.image != "" else {
+                return
+            }
+            
+            let getImage = ImageParam(image: info.image!)
+            infoRepo.getImage(data: getImage)
+                .map {(data) -> String in
+                    data.ImageFile
+            }.subscribe(onNext: { value in
+                info.imageValue = value
+                self.searchTV.reloadData()
+            })
+                .disposed(by: disposeBag)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
